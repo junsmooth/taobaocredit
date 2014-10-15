@@ -29,10 +29,11 @@ public class CreditProcessor implements Callable<Credit> {
 		c.setUserName(nickCode);
 		try {
 			String baseUrl = "http://www.131458.com/handler/TaobaoInfo.ashx";
-			String url1 = baseUrl + "?nickCode=" + nickCode + "&token=" + token;
+			String url1 = baseUrl + "?nickCode=" +Escape.escape(nickCode) + "&token=" + token;
 			Document doc = Jsoup.connect(url1).timeout(0).get();
 
 			Element e1 = doc.select("p.inq_02_L_002").first();
+			System.out.println("regtime:"+e1);
 			String regTime = e1.text();
 			regTime = StringUtils.substringAfter(regTime, "：");
 			regTime = StringUtils.substring(regTime, 0, 10);
@@ -55,11 +56,12 @@ public class CreditProcessor implements Callable<Credit> {
 				}
 
 			}
-			String url2 = baseUrl + "?tbNickInfoJson=" + nickCode + "&token="
+			String url2 = baseUrl + "?tbNickInfoJson=" + Escape.escape(nickCode) + "&token="
 					+ token;
 			Document doc2 = Jsoup.connect(url2).timeout(0).get();
 			String txt2 = doc2.text();
 			String result = Escape.unescape(txt2);
+			System.out.println(result);
 			String img = StringUtils.substringBetween(result, "src='", ".jpg");
 			c.setSecurityLevel("http://www.131458.com/" + img + ".jpg");
 		} catch (Exception e) {
