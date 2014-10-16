@@ -32,6 +32,7 @@
 			<tr>
 				<th>账号</th>
 				<th>注册时间</th>
+				<th>买家信用(点)</th>
 				<th>最近一周(点)</th>
 				<th>最近一月(点)</th>
 				<th>账号等级</th>
@@ -74,6 +75,7 @@
 							html+="<tr>";
 							html+="<td>"+obj.userName+"</td>";
 							html+="<td>"+obj.registerTime+"</td>";
+							html+="<td>"+obj.buyerPoints+"</td>";
 							html+="<td>"+obj.b_pointOfLastWeek+"</td>";
 							html+="<td>"+obj.b_pointOfLastMonth+"</td>";
 							html+="<td><img src='"+obj.securityLevel+"'</img></td>";
