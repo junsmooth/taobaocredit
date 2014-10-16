@@ -54,13 +54,19 @@
 				for (var i = 0; i < nickArray.length; i++) {
 					var nick = nickArray[i];
 					var token = $.Token(nick);
-					hash[nick] = token;
+					var u={};
+					u['nick']=nick
+					u['token']=token;
+					hash[i]=u;
+					//hash[nick] = token;
 				}
+				var data={};
+				data["data"]=JSON.stringify(hash);
 				$("#tableBody").html("");
 				$.ajax({
 					type : "post",
 					url : "credit/query",
-					data : hash,
+					data : data,
 					success : function(returnData) {
 						var html="";
 						for(var i=0;i<returnData.length;i++){
