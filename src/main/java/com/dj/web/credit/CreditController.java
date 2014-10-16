@@ -22,7 +22,7 @@ import com.dj.entity.Credit;
 @Controller
 @RequestMapping(value = "/credit")
 public class CreditController {
-	private static ExecutorService pool = Executors.newCachedThreadPool();
+	private static ExecutorService pool = Executors.newFixedThreadPool(3);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index() {
